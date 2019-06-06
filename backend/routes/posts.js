@@ -80,6 +80,7 @@ router.get("", (req, res, next) => {
       message: "Posts fetched successfully!",
       posts: documents
     });
+    console.log(documents);
   });
 });
 
