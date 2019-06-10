@@ -31,15 +31,19 @@ export class AuthService {
     return this.authStatusListener.asObservable();
   }
 
-  createUser(email: string, password: string){
+  createUser(email: string, password: string) {
     const authData: AuthData = {
       email: email,
       password: password
     };
-    this.http.post("http://localhost:3000/api/user/signup", authData)
-    .subscribe(response => {
-      console.log(response);
-    });
+    this.http
+      .post("http://localhost:3000/api/user/signup", authData)
+      .subscribe(() => {
+        console.log('it gets here');
+        this.router.navigate(['/']);
+      }, error => {
+        this.authStatusListener.next(false);
+      });
   }
 
   loginUser(email: string, password: string){
@@ -67,6 +71,8 @@ export class AuthService {
         this.saveAuthData(token, expirationDate, this.userId);
         this.router.navigate(['/']);
       }
+    }, error => {
+      this.authStatusListener.next(false);
     });
   }
 
@@ -106,7 +112,7 @@ export class AuthService {
   private saveAuthData(token: string, expirationDate: Date, userId: string) {
     localStorage.setItem('token', token);
     localStorage.setItem('expiration', expirationDate.toISOString());
-    localStorage.setItem('userId', userId)
+    localStorage.setItem('userId', userId);
   }
 
   private clearAuthData() {
