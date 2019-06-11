@@ -11,12 +11,16 @@ import {
   MatExpansionModule,
   MatProgressSpinnerModule,
   MatPaginatorModule,
-  MatDialogModule
+  MatDialogModule,
+  MatSidenavModule,
+  MatSidenavContainer,
+  MatSidenavContent
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { HeaderComponent } from './header/header.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
@@ -30,6 +34,7 @@ import { ErrorComponent } from './error/error.component';
     AppComponent,
     PostCreateComponent,
     HeaderComponent,
+    SidebarComponent,
     PostListComponent,
     LoginComponent,
     SignupComponent,
@@ -49,6 +54,7 @@ import { ErrorComponent } from './error/error.component';
     MatProgressSpinnerModule,
     MatPaginatorModule,
     MatDialogModule,
+    MatSidenavModule,
     HttpClientModule
   ],
   providers: [
