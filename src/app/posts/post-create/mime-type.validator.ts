@@ -1,3 +1,5 @@
+//get rid of mime type as any file uploaded
+
 import { AbstractControl } from "@angular/forms";
 import { Observable, Observer, of } from "rxjs";
 
