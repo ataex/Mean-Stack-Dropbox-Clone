@@ -9,7 +9,7 @@ mat-sidenav-container {
 
 mat-sidenav {
   width: 13rem;
-  background-color: #ffd740;
+  background: #424242;
   right: 0;
 }
 
@@ -22,7 +22,7 @@ input,
 
 a {
   text-decoration: none;
-  color: #673ab7;
+  color: white;
 }
 
 .navItems {

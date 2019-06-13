@@ -10,12 +10,12 @@ mat-sidenav-container {
 mat-sidenav {
   width: 13rem;
   /* background-color: #673ab7; */
-  background-color: #ffd740;
+  background-color: #424242;
 }
 
 a {
   text-decoration: none;
-  color: #673ab7;
+  color: white;
 }
 
 .navItems {
