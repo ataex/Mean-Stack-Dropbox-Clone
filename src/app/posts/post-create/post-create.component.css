@@ -1,3 +1,9 @@
+mat-card {
+position: absolute;
+left: 16rem;
+right: 16rem;
+}
+
 mat-form-field,
 textarea {
   width: 100%;
