@@ -12,9 +12,7 @@ import {
   MatProgressSpinnerModule,
   MatPaginatorModule,
   MatDialogModule,
-  MatSidenavModule,
-  MatSidenavContainer,
-  MatSidenavContent
+  MatSidenavModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
