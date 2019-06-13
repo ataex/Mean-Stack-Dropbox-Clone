@@ -1,0 +1,17 @@
+<mat-sidenav-container *ngIf="userIsAuthenticated">
+  <mat-sidenav mode="side" opened="true">
+    <div class="navItems">
+      <ul>
+        <li>
+          <a mat-button routerLink="">Home</a>
+        </li>
+        <li>
+          <a mat-button routerLink="">Deleted Files</a>
+        </li>
+        <li>
+            <a mat-button routerLink="">Forum</a>
+        </li>
+      </ul>
+    </div>
+  </mat-sidenav>
+</mat-sidenav-container>

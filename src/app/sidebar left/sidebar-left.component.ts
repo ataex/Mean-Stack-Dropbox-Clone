@@ -3,12 +3,12 @@ import { AuthService } from '../auth/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-sidebar',
-  templateUrl: './sidebar.component.html',
-  styleUrls: ['./sidebar.component.css']
+  selector: 'app-sidebar-left',
+  templateUrl: './sidebar-left.component.html',
+  styleUrls: ['./sidebar-left.component.css']
 })
 
-export class SidebarComponent implements OnInit, OnDestroy {
+export class SidebarLeftComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   private authListenerSubs: Subscription;
   constructor(private authService: AuthService) {}

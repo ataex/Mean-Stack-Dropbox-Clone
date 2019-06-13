@@ -1,0 +1,32 @@
+mat-sidenav-container {
+  width: 16rem;
+  height: 100%;
+  float: left;
+  background: #eee;
+  margin-right: 7rem;
+  visibility: hidden;
+}
+
+mat-sidenav {
+  width: 13rem;
+  background-color: #ffd740;
+}
+
+a {
+  text-decoration: none;
+  color: #673ab7;
+}
+
+.navItems {
+  text-align: center;
+  padding-right: 1rem;
+}
+
+ul {
+  padding-inline-start: 1rem;
+}
+
+li {
+  list-style-type: none;
+  padding-top: 2rem;
+}
