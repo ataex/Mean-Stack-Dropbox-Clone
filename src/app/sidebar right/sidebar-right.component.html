@@ -3,13 +3,24 @@
     <div class="navItems">
       <ul>
         <li>
-          <a mat-button routerLink="">Home</a>
+          <form class="searchForm">
+            <mat-form-field>
+              <input matInput type="search" placeholder="Search...">
+            </mat-form-field>
+            <button mat-raised-button id="searchButton" color="primary" type="submit">Search</button>
+          </form>
         </li>
         <li>
-          <a mat-button routerLink="">Deleted Files</a>
+          <a mat-button routerLink="">Upload File</a>
         </li>
         <li>
-            <a mat-button routerLink="">Forum</a>
+          <a mat-button routerLink="">Upload Folder</a>
+        </li>
+        <li>
+            <a mat-button routerLink="">New Folder</a>
+        </li>
+        <li>
+            <a mat-button routerLink="">Show Deleted</a>
         </li>
       </ul>
     </div>

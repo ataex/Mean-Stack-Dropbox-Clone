@@ -1,15 +1,23 @@
 mat-sidenav-container {
   width: 16rem;
   height: 100%;
-  float: left;
+  float: right;
   background: #eee;
-  margin-right: 7rem;
+  /* margin-left: 7rem; */
   visibility: hidden;
 }
 
 mat-sidenav {
   width: 13rem;
   background-color: #ffd740;
+  right: 0;
+}
+
+mat-form-field,
+input,
+#searchButton {
+  text-align: center;
+  width: 100%;
 }
 
 a {
@@ -19,7 +27,7 @@ a {
 
 .navItems {
   text-align: center;
-  padding-right: 1rem;
+  padding-left: 1rem;
 }
 
 ul {

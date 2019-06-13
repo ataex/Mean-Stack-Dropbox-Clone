@@ -3,7 +3,7 @@ mat-sidenav-container {
   height: 100%;
   float: left;
   background: #eee;
-  margin-right: 7rem;
+  /* margin-right: 7rem; */
   visibility: hidden;
 }
 
