@@ -1,14 +1,14 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { AuthService } from '../auth/auth.service';
+import { AuthService } from '../../auth/auth.service';
 import { Subscription } from 'rxjs';
 
 @Component({
-  selector: 'app-sidebar-right',
-  templateUrl: './sidebar-right.component.html',
-  styleUrls: ['./sidebar-right.component.css']
+  selector: 'app-sidebar-left',
+  templateUrl: './sidebar-left.component.html',
+  styleUrls: ['./sidebar-left.component.css']
 })
 
-export class SidebarRightComponent implements OnInit, OnDestroy {
+export class SidebarLeftComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   private authListenerSubs: Subscription;
   constructor(private authService: AuthService) {}

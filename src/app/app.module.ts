@@ -19,9 +19,9 @@ import {
 
 import { AppComponent } from './app.component';
 import { PostCreateComponent } from './posts/post-create/post-create.component';
-import { HeaderComponent } from './header/header.component';
-import { SidebarLeftComponent } from './sidebar left/sidebar-left.component';
-import { SidebarRightComponent } from './sidebar right/sidebar-right.component';
+import { HeaderComponent } from './navigation/header/header.component';
+import { SidebarLeftComponent } from './navigation/sidebar-left/sidebar-left.component';
+import { SidebarRightComponent } from './navigation/sidebar-right/sidebar-right.component';
 import { PostListComponent } from './posts/post-list/post-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
@@ -29,6 +29,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInteceptor } from './auth/auth-interceptor';
 import { ErrorInteceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
+import { UserSettingsComponent } from './settings/user-settings.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ErrorComponent } from './error/error.component';
     PostListComponent,
     LoginComponent,
     SignupComponent,
-    ErrorComponent
+    ErrorComponent,
+    UserSettingsComponent
   ],
   imports: [
     BrowserModule,
