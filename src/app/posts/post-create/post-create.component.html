@@ -3,20 +3,37 @@
     <mat-spinner *ngIf="isLoading"></mat-spinner>
     <form [formGroup]="form" (submit)="onSavePost()" *ngIf="!isLoading">
       <mat-form-field>
-        <input matInput type="text" formControlName="title" placeholder="Post Title">
-        <mat-error *ngIf="form.get('title').invalid">Please enter a post title.</mat-error>
+        <input matInput type="text" formControlName="fileName" placeholder="File Name">
+        <mat-error *ngIf="form.get('fileName').invalid">Please enter a file name.</mat-error>
       </mat-form-field>
       <div>
-        <button mat-stroked-button type="button" (click)="filePicker.click()">Pick Image</button>
+        <button mat-stroked-button type="button" (click)="filePicker.click()" id="filePicker">Pick Image</button>
         <input type="file" #filePicker (change)="onImagePicked($event)">
       </div>
       <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
-        <img [src]="imagePreview" [alt]="form.value.title">
+        <img [src]="imagePreview" [alt]="form.value.fileName">
       </div>
       <mat-form-field>
-        <textarea matInput rows="4" formControlName="content" placeholder="Post Content"></textarea>
-        <mat-error *ngIf="form.get('content').invalid">Please enter a post title.</mat-error>
+        <input matInput type="text" formControlName="fileAuthor" placeholder="Author">
+        <mat-error *ngIf="form.get('fileAuthor').invalid">Please enter an author.</mat-error>
       </mat-form-field>
-      <button mat-raised-button color="accent" type="submit">Save Post</button>
+      <mat-form-field>
+        <input matInput type="date" formControlName="dateUploaded">
+        <mat-error *ngIf="form.get('dateUploaded').invalid">Please enter a today's date.</mat-error>
+      </mat-form-field>
+      <mat-form-field>
+      <textarea matInput rows="4" formControlName="fileTags" placeholder="Comma separated list of tags"></textarea>
+        <mat-error *ngIf="form.get('fileTags').invalid">Please enter a comma separated list of tags.</mat-error>
+      </mat-form-field>
+      <div id="dropzoneFolderChoice">
+        Upload into what folder on DropZone?
+      </div>
+      <mat-form-field>
+        <input matInput type="date" formControlName="lastModifiedDate" disabled="true">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput type="text" formControlName="lastModifiedUser" placeholder="Last Modified by">
+      </mat-form-field>
+      <button mat-raised-button color="accent" type="submit" id="uploadBtn">Save Post</button>
     </form>
   </mat-card>

@@ -22,7 +22,7 @@ export class PostsService {
           return {
             posts: postData.posts.map(post => {
               return {
-                title: post.title,
+                fileName: post.fileName,
                 content: post.content,
                 id: post._id,
                 imagePath: post.imagePath,
@@ -48,16 +48,16 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return this.http.get<{ _id: string, title: string, content: string, imagePath: string, creator: string }>(
+    return this.http.get<{ _id: string, fileName: string, content: string, imagePath: string, creator: string }>(
       'http://localhost:3000/api/posts/' + id
     );
   }
 
-  addPost(title: string, content: string, image: File) {
+  addPost(fileName: string, content: string, image: File) {
     const postData = new FormData();
-    postData.append('title', title);
+    postData.append('fileName', fileName);
     postData.append('content', content);
-    postData.append('image', image, title);
+    postData.append('image', image, fileName);
     this.http
       .post<{ message: string; post: Post }>(
         'http://localhost:3000/api/posts',
@@ -68,18 +68,18 @@ export class PostsService {
       });
   }
 
-  updatePost(id: string, title: string, content: string, image: File | string) {
+  updatePost(id: string, fileName: string, content: string, image: File | string) {
     let postData: Post | FormData;
     if (typeof image === 'object') {
       postData = new FormData();
       postData.append('id', id);
-      postData.append('title', title);
+      postData.append('fileName', fileName);
       postData.append('content', content);
-      postData.append('image', image, title);
+      postData.append('image', image, fileName);
     } else {
       postData = {
         id: id,
-        title: title,
+        fileName: fileName,
         content: content,
         imagePath: image,
         creator: null

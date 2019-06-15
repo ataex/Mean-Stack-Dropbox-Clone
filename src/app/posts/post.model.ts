@@ -1,6 +1,6 @@
 export interface Post {
   id: string;
-  title: string;
+  fileName: string;
   content: string;
   imagePath: string;
   creator: string;

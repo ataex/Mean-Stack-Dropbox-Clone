@@ -3,10 +3,10 @@
 <mat-accordion multi="true" *ngIf="userIsAuthenticated && posts.length > 0 && !isLoading">
   <mat-expansion-panel *ngFor="let post of posts">
     <mat-expansion-panel-header>
-      {{ post.title }}
+      {{ post.fileName }}
     </mat-expansion-panel-header>
     <div class="post-image">
-      <img [src]="post.imagePath" [alt]="post.title">
+      <img [src]="post.imagePath" [alt]="post.fileName">
     </div>
     <p>{{ post.content }}</p>
     <mat-action-row *ngIf="userIsAuthenticated && userId === post.creator">
