@@ -22,7 +22,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
   isLoading = false;
   totalPosts = 0;
-  postsPerPage = 2;
+  postsPerPage = 4;
   pageSizeOptions = [1, 2, 5, 10];
   currentPage = 1;
   userIsAuthenticated = false;
@@ -49,6 +49,9 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.totalPosts = postData.postCount;
         this.posts = postData.posts;
+        for (let i = 0; i < this.tiles.length; i++) {
+          this.tiles[i].text = this.posts[i].fileName;
+        }
       });
     this.userIsAuthenticated = this.authService.getisAuth();
     this.authStatusSub = this.authService
