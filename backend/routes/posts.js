@@ -88,8 +88,9 @@ router.put(
     Post.updateOne({ _id: req.params.id }, post).then(result => {
       if(result.nModified > 0) {
         res.status(200).json({ message: "Update successful!" });
-      } else {
-        res.status(401).json({ message: "Not authorized!" });
+      }
+      else {
+        res.status(401).json({ message: "Nothing was updated!" });
       }
     })
     .catch(error => {
