@@ -43,8 +43,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         validators: [Validators.required, Validators.minLength(3)]
       }),
       file: new FormControl(null, {
-        validators: [Validators.required],
-        asyncValidators: [mimeType]
+        validators: [Validators.required]
+        //asyncValidators: [mimeType]
       }),
       fileAuthor: new FormControl (null, {
         validators: []
