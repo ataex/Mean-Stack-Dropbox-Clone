@@ -12,7 +12,8 @@ import {
   MatProgressSpinnerModule,
   MatPaginatorModule,
   MatDialogModule,
-  MatSidenavModule
+  MatSidenavModule,
+  MatGridListModule
 } from '@angular/material';
 
 import { AppComponent } from './app.component';
@@ -57,6 +58,7 @@ import { UserSettingsComponent } from './settings/user-settings.component';
     MatPaginatorModule,
     MatDialogModule,
     MatSidenavModule,
+    MatGridListModule,
     HttpClientModule
   ],
   providers: [

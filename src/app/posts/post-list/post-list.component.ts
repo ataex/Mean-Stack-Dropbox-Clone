@@ -1,15 +1,22 @@
-import { Component, OnInit, OnDestroy } from "@angular/core";
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { PageEvent } from '@angular/material';
 
-import { Post } from "../post.model";
-import { PostsService } from "../posts.service";
+import { Post } from '../post.model';
+import { PostsService } from '../posts.service';
 import { AuthService } from 'src/app/auth/auth.service';
 
+export interface Tile {
+  color: string;
+  cols: number;
+  rows: number;
+  text: string;
+}
+
 @Component({
-  selector: "app-post-list",
-  templateUrl: "./post-list.component.html",
-  styleUrls: ["./post-list.component.css"]
+  selector: 'app-post-list',
+  templateUrl: './post-list.component.html',
+  styleUrls: ['./post-list.component.css']
 })
 export class PostListComponent implements OnInit, OnDestroy {
   posts: Post[] = [];
@@ -22,6 +29,13 @@ export class PostListComponent implements OnInit, OnDestroy {
   userId: string;
   private postsSub: Subscription;
   private authStatusSub: Subscription;
+
+  tiles: Tile[] = [
+    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
+    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
+    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  ];
 
   constructor(public postsService: PostsService, private authService: AuthService) {}
 

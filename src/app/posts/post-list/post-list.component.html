@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <mat-spinner *ngIf="isLoading && userIsAuthenticated"></mat-spinner>
-<mat-accordion multi="true" *ngIf="userIsAuthenticated && posts.length > 0 && !isLoading">
+<!-- <mat-accordion multi="true" *ngIf="userIsAuthenticated && posts.length > 0 && !isLoading">
   <mat-expansion-panel *ngFor="let post of posts">
     <mat-expansion-panel-header>
       {{ post.fileName }}
@@ -14,7 +14,16 @@
       <button mat-button color="warn" (click)="onDelete(post.id)">DELETE</button>
     </mat-action-row>
   </mat-expansion-panel>
-</mat-accordion>
+</mat-accordion> -->
+<mat-grid-list cols="4" rowHeight="100px">
+  <mat-grid-tile
+    *ngFor="let tile of tiles"
+    [colspan]="tile.cols"
+    [rowspan]="tile.rows"
+    [style.background]="tile.color">
+    {{tile.text}}
+  </mat-grid-tile>
+</mat-grid-list>
 <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="posts.length > 0 && userIsAuthenticated"></mat-paginator>
 <p class="info-text mat-body-1" *ngIf="posts.length <= 0 && !isLoading">No posts added yet!</p>
 <p id="authInfo" class="info-text mat-body-1" *ngIf="!userIsAuthenticated">Please <a [routerLink]="['/login']">Login</a> or <a [routerLink]="['/signup']">Signup</a></p>

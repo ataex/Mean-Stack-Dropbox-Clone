@@ -13,6 +13,11 @@ mat-paginator {
   float: left;
 }
 
+mat-grid-list {
+  width: 80%;
+  float: left;
+}
+
 .info-text {
   text-align: center;
 }
