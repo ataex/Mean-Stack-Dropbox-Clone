@@ -6,29 +6,29 @@
         <input matInput type="text" formControlName="fileName" placeholder="File Name">
         <mat-error *ngIf="form.get('fileName').invalid">Please enter a file name.</mat-error>
       </mat-form-field>
-      <div>
+      <div id="filePicker">
         <button mat-stroked-button type="button" (click)="filePicker.click()" id="filePicker">Pick File</button>
         <input type="file" #filePicker (change)="onFilePicked($event)">
       </div>
       <mat-form-field>
-        <input matInput type="text" formControlName="fileAuthor" placeholder="Username logged in" readonly="true">
+        <input matInput type="text" formControlName="fileAuthor" placeholder="Author" readonly="true">
       </mat-form-field>
       <mat-form-field>
-        <input matInput formControlName="dateUploaded" type="date" readonly="true">
+        <input matInput formControlName="dateUploaded" type="date" readonly="true" placeholder="Date Uploaded">
         <mat-error *ngIf="form.get('dateUploaded').invalid">Please enter today's date.</mat-error>
       </mat-form-field>
       <mat-form-field>
-      <textarea matInput rows="4" formControlName="fileTags" placeholder="Comma separated list of tags associated with the file"></textarea>
+      <textarea matInput rows="4" formControlName="fileTags" placeholder="Tags"></textarea>
         <mat-error *ngIf="form.get('fileTags').invalid">Please enter a comma separated list of tags associated with the file.</mat-error>
       </mat-form-field>
       <div id="dropzoneFolderChoice">
-        Upload into what folder on DropZone?
+        <p>Upload into what folder on DropZone?</p>
       </div>
       <mat-form-field>
-        <input matInput type="date" formControlName="dateLastModified" readonly="true">
+        <input matInput type="date" formControlName="dateLastModified" readonly="true" placeholder="Last Modified Date">
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="text" formControlName="userLastModified" placeholder="Last Modified by" readonly="true">
+        <input matInput type="text" formControlName="userLastModified" placeholder="Last Modified By" readonly="true">
       </mat-form-field>
       <button mat-raised-button color="accent" type="submit" id="uploadBtn">Save Post</button>
       <button mat-raised-button color="warn" (click)="onCancel()" id="cancelBtn">Cancel</button>

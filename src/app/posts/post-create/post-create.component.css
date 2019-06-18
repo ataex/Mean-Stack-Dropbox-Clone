@@ -20,3 +20,7 @@ input[type="file"] {
 #cancelBtn {
   float: right;
 }
+
+#filePicker, mat-form-field, #dropzoneFolderChoice{
+  margin: 0.2rem;
+}
