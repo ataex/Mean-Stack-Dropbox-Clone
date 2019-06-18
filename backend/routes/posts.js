@@ -39,9 +39,12 @@ router.post(
     const url = req.protocol + "://" + req.get("host");
     const post = new Post({
       fileName: req.body.fileName,
-      content: req.body.content,
       filePath: url + "/images/" + req.file.filename,
-      creator: req.userData.userId
+      author: req.body.author,
+      dateUploaded: req.body.dateUploaded,
+      fileTags: req.body.fileTags,
+      dateLastModified: req.body.dateLastModified,
+      userLastModified: req.userData.userIdreq.userData.userId
     });
     post.save().then(createdPost => {
       res.status(201).json({
@@ -73,11 +76,15 @@ router.put(
     const post = new Post({
       _id: req.body.id,
       fileName: req.body.fileName,
-      content: req.body.content,
       filePath: filePath,
-      creator: req.userData.userId
+      author: req.body.author,
+      dateUploaded: req.body.dateUploaded,
+      fileTags: req.body.fileTags,
+      dateLastModified: req.body.dateLastModified,
+      userLastModified: req.userData.userIdreq.userData.userId
     });
-    Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post).then(result => {
+    // Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post).then(result => {
+    Post.updateOne({ _id: req.params.id }, post).then(result => {
       if(result.nModified > 0) {
         res.status(200).json({ message: "Update successful!" });
       } else {
@@ -135,7 +142,8 @@ router.get("/:id", (req, res, next) => {
 });
 
 router.delete("/:id", checkAuth, (req, res, next) => {
-  Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(result => {
+  // Post.deleteOne({ _id: req.params.id, creator: req.userData.userId }).then(result => {
+  Post.deleteOne({ _id: req.params.id }).then(result => {
     if(result.n > 0) {
       res.status(200).json({ message: "Delete successful!" });
     } else {

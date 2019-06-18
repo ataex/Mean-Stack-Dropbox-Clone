@@ -7,32 +7,29 @@
         <mat-error *ngIf="form.get('fileName').invalid">Please enter a file name.</mat-error>
       </mat-form-field>
       <div>
-        <button mat-stroked-button type="button" (click)="filePicker.click()" id="filePicker">Pick Image</button>
-        <input type="file" #filePicker (change)="onImagePicked($event)">
-      </div>
-      <div class="image-preview" *ngIf="imagePreview !== '' && imagePreview && form.get('image').valid">
-        <img [src]="imagePreview" [alt]="form.value.fileName">
+        <button mat-stroked-button type="button" (click)="filePicker.click()" id="filePicker">Pick File</button>
+        <input type="file" #filePicker (change)="onFilePicked($event)">
       </div>
       <mat-form-field>
-        <input matInput type="text" formControlName="fileAuthor" placeholder="Author">
+        <input matInput type="text" formControlName="fileAuthor" placeholder="Username logged in" disabled="true">
         <mat-error *ngIf="form.get('fileAuthor').invalid">Please enter an author.</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="date" formControlName="dateUploaded">
-        <mat-error *ngIf="form.get('dateUploaded').invalid">Please enter a today's date.</mat-error>
+        <input matInput type="date" formControlName="dateUploaded" disabled="true">
+        <mat-error *ngIf="form.get('dateUploaded').invalid">Please enter today's date.</mat-error>
       </mat-form-field>
       <mat-form-field>
-      <textarea matInput rows="4" formControlName="fileTags" placeholder="Comma separated list of tags"></textarea>
-        <mat-error *ngIf="form.get('fileTags').invalid">Please enter a comma separated list of tags.</mat-error>
+      <textarea matInput rows="4" formControlName="fileTags" placeholder="Comma separated list of tags associated with the file"></textarea>
+        <mat-error *ngIf="form.get('fileTags').invalid">Please enter a comma separated list of tags associated with the file.</mat-error>
       </mat-form-field>
       <div id="dropzoneFolderChoice">
         Upload into what folder on DropZone?
       </div>
       <mat-form-field>
-        <input matInput type="date" formControlName="lastModifiedDate" disabled="true">
+        <input matInput type="date" formControlName="dateLastModified" disabled="true">
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="text" formControlName="lastModifiedUser" placeholder="Last Modified by">
+        <input matInput type="text" formControlName="userLastModified" placeholder="Last Modified by" disabled="true">
       </mat-form-field>
       <button mat-raised-button color="accent" type="submit" id="uploadBtn">Save Post</button>
     </form>

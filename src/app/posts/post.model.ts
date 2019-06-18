@@ -1,7 +1,10 @@
 export interface Post {
   id: string;
   fileName: string;
-  content: string;
   filePath: string;
-  creator: string;
+  author: string;
+  dateUploaded: Date;
+  fileTags: string;
+  dateLastModified: Date;
+  userLastModified: string;
 }
