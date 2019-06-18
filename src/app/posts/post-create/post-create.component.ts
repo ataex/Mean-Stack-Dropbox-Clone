@@ -20,6 +20,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
   isLoading = false;
   form: FormGroup;
   filePreview: string;
+  todayDate = (new Date()).toISOString().split('T')[0];
   private mode = 'create';
   private postId: string;
   private authStatusSub: Subscription;
@@ -59,6 +60,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         validators: [Validators.required]
       })
     });
+    this.form.patchValue({dateUploaded: this.todayDate});
+    this.form.patchValue({dateUploaded: this.todayDate});
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
@@ -74,7 +77,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             dateUploaded: postData.dateUploaded,
             fileTags: postData.fileTags,
             dateLastModified: postData.dateLastModified,
-            userLastModified: postData. userLastModified
+            userLastModified: postData.userLastModified
           };
           this.form.setValue({
             fileName: this.post.fileName,
