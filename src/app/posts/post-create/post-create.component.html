@@ -11,11 +11,11 @@
         <input type="file" #filePicker (change)="onFilePicked($event)">
       </div>
       <mat-form-field>
-        <input matInput type="text" formControlName="fileAuthor" placeholder="Username logged in" disabled="true">
+        <input matInput type="text" formControlName="fileAuthor" placeholder="Username logged in">
         <mat-error *ngIf="form.get('fileAuthor').invalid">Please enter an author.</mat-error>
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="date" formControlName="dateUploaded" disabled="true">
+        <input matInput formControlName="dateUploaded" type="date" value="2019-06-18" readonly="true">
         <mat-error *ngIf="form.get('dateUploaded').invalid">Please enter today's date.</mat-error>
       </mat-form-field>
       <mat-form-field>
@@ -26,10 +26,10 @@
         Upload into what folder on DropZone?
       </div>
       <mat-form-field>
-        <input matInput type="date" formControlName="dateLastModified" disabled="true">
+        <input matInput type="date" formControlName="dateLastModified">
       </mat-form-field>
       <mat-form-field>
-        <input matInput type="text" formControlName="userLastModified" placeholder="Last Modified by" disabled="true">
+        <input matInput type="text" formControlName="userLastModified" placeholder="Last Modified by">
       </mat-form-field>
       <button mat-raised-button color="accent" type="submit" id="uploadBtn">Save Post</button>
     </form>
