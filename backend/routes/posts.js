@@ -34,17 +34,18 @@ const storage = multer.diskStorage({
 router.post(
   "",
   checkAuth ,
-  multer({ storage: storage }).single("image"),
+  multer({ storage: storage }).single("file"),
   (req, res, next) => {
     const url = req.protocol + "://" + req.get("host");
     const post = new Post({
       fileName: req.body.fileName,
       filePath: url + "/images/" + req.file.filename,
-      author: req.body.author,
+      // author: req.body.author,
+      author: req.userData.userId,
       dateUploaded: req.body.dateUploaded,
       fileTags: req.body.fileTags,
       dateLastModified: req.body.dateLastModified,
-      userLastModified: req.userData.userIdreq.userData.userId
+      userLastModified: req.userData.userId
     });
     post.save().then(createdPost => {
       res.status(201).json({
