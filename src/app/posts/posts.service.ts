@@ -104,7 +104,7 @@ export class PostsService {
         id: id,
         fileName: fileName,
         filePath: file,
-        author: null,
+        author: author,
         dateUploaded: dateUploaded,
         fileTags: fileTags,
         dateLastModified: dateLastModified,

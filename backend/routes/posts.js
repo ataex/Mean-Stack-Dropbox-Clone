@@ -82,7 +82,7 @@ router.put(
       dateUploaded: req.body.dateUploaded,
       fileTags: req.body.fileTags,
       dateLastModified: req.body.dateLastModified,
-      userLastModified: req.userData.userIdreq.userData.userId
+      userLastModified: req.userData.userId
     });
     // Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post).then(result => {
     Post.updateOne({ _id: req.params.id }, post).then(result => {
