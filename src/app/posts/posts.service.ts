@@ -123,4 +123,8 @@ export class PostsService {
     return this.http
       .delete('http://localhost:3000/api/posts/' + postId);
   }
+
+  cancelCreate() {
+    this.router.navigate(['/']);
+  }
 }

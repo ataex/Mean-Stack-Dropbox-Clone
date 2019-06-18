@@ -32,5 +32,6 @@
         <input matInput type="text" formControlName="userLastModified" placeholder="Last Modified by">
       </mat-form-field>
       <button mat-raised-button color="accent" type="submit" id="uploadBtn">Save Post</button>
+      <button mat-raised-button color="warn" (click)="onCancel()" id="cancelBtn">Cancel</button>
     </form>
   </mat-card>

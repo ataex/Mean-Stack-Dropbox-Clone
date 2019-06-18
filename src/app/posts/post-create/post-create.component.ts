@@ -137,6 +137,10 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     this.form.reset();
   }
 
+  onCancel() {
+    this.postsService.cancelCreate();
+  }
+
   ngOnDestroy() {
     this.authStatusSub.unsubscribe();
   }

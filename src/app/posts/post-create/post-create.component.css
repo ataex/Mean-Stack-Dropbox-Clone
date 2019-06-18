@@ -16,3 +16,7 @@ mat-spinner {
 input[type="file"] {
   visibility: hidden;
 }
+
+#cancelBtn {
+  float: right;
+}
