@@ -67,7 +67,7 @@ router.post(
 router.put(
   "/:id",
   checkAuth,
-  multer({ storage: storage }).single("image"),
+  multer({ storage: storage }).single("file"),
   (req, res, next) => {
     let filePath = req.body.filePath;
     if (req.file) {

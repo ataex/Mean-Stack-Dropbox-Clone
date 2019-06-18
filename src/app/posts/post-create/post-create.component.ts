@@ -47,21 +47,23 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         asyncValidators: [mimeType]
       }),
       fileAuthor: new FormControl (null, {
-        validators: [Validators.required]
+        validators: []
       }),
       dateUploaded: new FormControl (null, {
         validators: [Validators.required]
       }),
       fileTags: new FormControl(null, {}),
       dateLastModified: new FormControl (null, {
-        validators: [Validators.required]
+        validators: []
       }),
       userLastModified: new FormControl(null, {
-        validators: [Validators.required]
+        validators: []
       })
     });
-    this.form.patchValue({dateUploaded: this.todayDate});
-    this.form.patchValue({dateUploaded: this.todayDate});
+    this.form.patchValue({
+      dateUploaded: this.todayDate,
+      dateLastModified: this.todayDate
+    });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
       if (paramMap.has('postId')) {
         this.mode = 'edit';
