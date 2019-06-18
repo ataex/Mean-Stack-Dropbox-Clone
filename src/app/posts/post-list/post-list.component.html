@@ -6,7 +6,7 @@
       {{ post.fileName }}
     </mat-expansion-panel-header>
     <div class="post-image">
-      <img [src]="post.imagePath" [alt]="post.fileName">
+      <img [src]="post.filePath" [alt]="post.fileName">
     </div>
     <p>{{ post.content }}</p>
     <mat-action-row *ngIf="userIsAuthenticated && userId === post.creator">

@@ -40,7 +40,7 @@ router.post(
     const post = new Post({
       fileName: req.body.fileName,
       content: req.body.content,
-      imagePath: url + "/images/" + req.file.filename,
+      filePath: url + "/images/" + req.file.filename,
       creator: req.userData.userId
     });
     post.save().then(createdPost => {
@@ -65,16 +65,16 @@ router.put(
   checkAuth,
   multer({ storage: storage }).single("image"),
   (req, res, next) => {
-    let imagePath = req.body.imagePath;
+    let filePath = req.body.filePath;
     if (req.file) {
       const url = req.protocol + "://" + req.get("host");
-      imagePath = url + "/images/" + req.file.filename
+      filePath = url + "/images/" + req.file.filename
     }
     const post = new Post({
       _id: req.body.id,
       fileName: req.body.fileName,
       content: req.body.content,
-      imagePath: imagePath,
+      filePath: filePath,
       creator: req.userData.userId
     });
     Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post).then(result => {
