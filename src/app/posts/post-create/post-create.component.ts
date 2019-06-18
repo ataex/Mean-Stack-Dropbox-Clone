@@ -41,10 +41,22 @@ export class PostCreateComponent implements OnInit, OnDestroy {
       fileName: new FormControl(null, {
         validators: [Validators.required, Validators.minLength(3)]
       }),
-      fileTags: new FormControl(null, {}),
       file: new FormControl(null, {
         validators: [Validators.required],
         asyncValidators: [mimeType]
+      }),
+      author: new FormControl (null, {
+        validators: [Validators.required]
+      }),
+      dateUploaded: new FormControl (null, {
+        validators: [Validators.required]
+      }),
+      fileTags: new FormControl(null, {}),
+      dateLastModified: new FormControl (null, {
+        validators: [Validators.required]
+      }),
+      userLastModified: new FormControl(null, {
+        validators: [Validators.required]
       })
     });
     this.route.paramMap.subscribe((paramMap: ParamMap) => {
@@ -57,6 +69,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
           this.post = {
             id: postData._id,
             fileName: postData.fileName,
+            filePath: postData.filePath,
             author: postData.author,
             dateUploaded: postData.dateUploaded,
             fileTags: postData.fileTags,
@@ -99,15 +112,23 @@ export class PostCreateComponent implements OnInit, OnDestroy {
     if (this.mode === 'create') {
       this.postsService.addPost(
         this.form.value.fileName,
-        this.form.value.content,
-        this.form.value.file
+        this.form.value.file,
+        this.form.value.author,
+        this.form.value.dateUploaded,
+        this.form.value.fileTags,
+        this.form.value.dateLastModified,
+        this.form.value.userLastModified
       );
     } else {
       this.postsService.updatePost(
         this.postId,
         this.form.value.fileName,
-        this.form.value.content,
-        this.form.value.file
+        this.form.value.file,
+        this.form.value.author,
+        this.form.value.dateUploaded,
+        this.form.value.fileTags,
+        this.form.value.dateLastModified,
+        this.form.value.userLastModified
       );
     }
     this.form.reset();

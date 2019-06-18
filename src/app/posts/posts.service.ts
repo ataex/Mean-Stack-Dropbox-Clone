@@ -48,16 +48,27 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return this.http.get<{ _id: string, fileName: string, content: string, filePath: string, creator: string }>(
+    return this.http.get<{ _id: string, fileName: string, filePath: string, author: string, dateUploaded: Date, fileTags: string, dateLastModified: Date, userLastModified: string }>(
       'http://localhost:3000/api/posts/' + id
     );
   }
 
-  addPost(fileName: string, content: string, image: File) {
+  addPost(
+    fileName: string,
+    file: File,
+    author: string,
+    dateUploaded: Date,
+    fileTags: string,
+    dateLastModified: Date,
+    userLastModified: string) {
     const postData = new FormData();
     postData.append('fileName', fileName);
-    postData.append('content', content);
-    postData.append('image', image, fileName);
+    postData.append('file', file, fileName);
+    postData.append('author', author);
+    postData.append('dateUploaded', dateUploaded.toString());
+    postData.append('fileTags', fileTags);
+    postData.append('dateLastModified', dateLastModified.toString());
+    postData.append('userLastModified', userLastModified);
     this.http
       .post<{ message: string; post: Post }>(
         'http://localhost:3000/api/posts',
@@ -68,21 +79,37 @@ export class PostsService {
       });
   }
 
-  updatePost(id: string, fileName: string, content: string, image: File | string) {
+  updatePost(
+    id: string,
+    fileName: string,
+    file: File | string,
+    author: string,
+    dateUploaded: Date,
+    fileTags: string,
+    dateLastModified: Date,
+    userLastModified: string) {
     let postData: Post | FormData;
-    if (typeof image === 'object') {
+    if (typeof file === 'object') {
       postData = new FormData();
       postData.append('id', id);
       postData.append('fileName', fileName);
-      postData.append('content', content);
-      postData.append('image', image, fileName);
+      postData.append('file', file, fileName);
+      postData.append('author', author);
+      postData.append('dateUploaded', dateUploaded.toString());
+      postData.append('fileTags', fileTags);
+      postData.append('dateLastModified', dateLastModified.toString());
+      postData.append('userLastModified', userLastModified);
     } else {
       postData = {
         id: id,
         fileName: fileName,
-        content: content,
-        filePath: image,
-        creator: null
+        filePath: file,
+        author: null,
+        dateUploaded: dateUploaded,
+        fileTags: fileTags,
+        dateLastModified: dateLastModified,
+        userLastModified: null
+        // creator: null
       };
     }
     this.http
