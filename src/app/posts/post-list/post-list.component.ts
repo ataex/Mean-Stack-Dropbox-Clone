@@ -85,10 +85,10 @@ export class PostListComponent implements OnInit, OnDestroy {
     });
   }
 
-  tileMouseover(tile) {
-    for (let i = 0; i < this.tiles.length; i++ ) {
-      if (this.tiles[i].text === tile.text) {
-        this.tiles[i].color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+  tileMouseover(postTile) {
+    for (let i = 0; i < this.postTiles.length; i++ ) {
+      if (this.postTiles[i].fileId === postTile.fileId) {
+        this.postTiles[i].color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
       }
     }
   }
