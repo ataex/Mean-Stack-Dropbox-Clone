@@ -23,10 +23,10 @@ export class PostsService {
             posts: postData.posts.map(post => {
               return {
                 fileName: post.fileName,
-                content: post.content,
+                // content: post.content,
                 id: post._id,
                 filePath: post.filePath,
-                creator: post.creator
+                creator: post.author
               };
             }),
             maxPosts: postData.maxPosts

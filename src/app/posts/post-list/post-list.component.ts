@@ -30,11 +30,15 @@ export class PostListComponent implements OnInit, OnDestroy {
   private postsSub: Subscription;
   private authStatusSub: Subscription;
 
+  // tiles: Tile[] = [
+  //   {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
+  //   {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
+  //   {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
+  //   {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  // ];
+
   tiles: Tile[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+    {text: null, cols: 3, rows: 1, color: 'lightblue'}
   ];
 
   constructor(public postsService: PostsService, private authService: AuthService) {}
@@ -49,8 +53,8 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.totalPosts = postData.postCount;
         this.posts = postData.posts;
-        for (let i = 0; i < this.tiles.length; i++) {
-          this.tiles[i].text = this.posts[i].fileName;
+        for (let i = 0; i < postData.postCount; i++) {
+          this.posts.push(this.tiles);
         }
       });
     this.userIsAuthenticated = this.authService.getisAuth();
