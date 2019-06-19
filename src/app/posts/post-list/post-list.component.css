@@ -9,12 +9,12 @@ mat-spinner {
 
 mat-paginator {
   margin-top: 5%;
-  width: 80%;
+  width: 84%;
   float: left;
 }
 
 mat-grid-list {
-  width: 80%;
+  width: 84%;
   float: left;
 }
 
