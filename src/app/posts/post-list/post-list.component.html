@@ -22,6 +22,8 @@
     [rowspan]="tile.rows"
     [style.background]="tile.color" (click)="tileMouseover(tile)">
     {{tile.text}}
+    <!-- HAVE A DIALOG POP UP WITH METADATA THEN DECIDE TO EDIT OR DOWNLOAD OR!!! CHECKOUT.
+    IF CHECKOUT CREATE NEW VERSION BACKUP AND LOCK CURRENT VERSION FOR NO FURTHER CHECKOUT OR EDITING -->
   </mat-grid-tile>
 </mat-grid-list>
 <mat-paginator [length]="totalPosts" [pageSize]="postsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)" *ngIf="posts.length > 0 && userIsAuthenticated"></mat-paginator>
