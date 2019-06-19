@@ -10,7 +10,8 @@ export interface Tile {
   color: string;
   cols: number;
   rows: number;
-  text: string;
+  fileName: string;
+  fileId: string;
 }
 
 @Component({
@@ -30,11 +31,11 @@ export class PostListComponent implements OnInit, OnDestroy {
   private postsSub: Subscription;
   private authStatusSub: Subscription;
 
-  tiles: Tile[] = [
-    {text: 'One', cols: 3, rows: 1, color: 'lightblue'},
-    {text: 'Two', cols: 1, rows: 2, color: 'lightgreen'},
-    {text: 'Three', cols: 1, rows: 1, color: 'lightpink'},
-    {text: 'Four', cols: 2, rows: 1, color: '#DDBDF1'},
+  postTiles: Tile[] = [
+    {fileName: 'One', cols: 3, rows: 1, color: 'lightblue', fileId: null},
+    {fileName: 'Two', cols: 1, rows: 2, color: 'lightgreen', fileId: null},
+    {fileName: 'Three', cols: 1, rows: 1, color: 'lightpink', fileId: null},
+    {fileName: 'Four', cols: 2, rows: 1, color: '#DDBDF1', fileId: null},
   ];
 
   // tiles: Tile[] = [
@@ -54,7 +55,8 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.totalPosts = postData.postCount;
         this.posts = postData.posts;
         for (let i = 0; i < postData.postCount; i++) {
-          this.tiles[i].text = this.posts[i].fileName;
+          this.postTiles[i].fileName = this.posts[i].fileName;
+          this.postTiles[i].fileId = this.posts[i].id;
         }
       });
     this.userIsAuthenticated = this.authService.getisAuth();

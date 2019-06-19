@@ -15,13 +15,14 @@
     </mat-action-row>
   </mat-expansion-panel>
 </mat-accordion> -->
-<mat-grid-list cols="4" rowHeight="100px">
+<mat-grid-list cols="4" rowHeight="100px" *ngIf="userIsAuthenticated && posts.length > 0 && !isLoading">
   <mat-grid-tile
-    *ngFor="let tile of tiles"
-    [colspan]="tile.cols"
-    [rowspan]="tile.rows"
-    [style.background]="tile.color" (click)="tileMouseover(tile)">
-    {{tile.text}}
+    *ngFor="let postTile of postTiles"
+    [colspan]="postTile.cols"
+    [rowspan]="postTile.rows"
+    [style.background]="postTile.color" (click)="tileMouseover(postTile)">
+    {{postTile.fileName}}
+    <a mat-button color="primary" [routerLink]="['/edit', postTile.fileId]">EDIT</a>
     <!-- HAVE A DIALOG POP UP WITH METADATA THEN DECIDE TO EDIT OR DOWNLOAD OR!!! CHECKOUT.
     IF CHECKOUT CREATE NEW VERSION BACKUP AND LOCK CURRENT VERSION FOR NO FURTHER CHECKOUT OR EDITING -->
   </mat-grid-tile>
