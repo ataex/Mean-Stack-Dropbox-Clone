@@ -7,7 +7,7 @@ const checkAuth = require("../middleware/check-auth");
 const router = express.Router();
 
 const MIME_TYPE_MAP = {
-  "x-world/x-3dmf": "3dm",
+"x-world/x-3dmf": "3dm",
 "x-world/x-3dmf": "3dmf",
 "application/octet-stream": "a",
 "application/x-authorware-bin": "aab",
@@ -105,6 +105,7 @@ const MIME_TYPE_MAP = {
 "video/dl": "dl",
 "video/x-dl": "dl",
 "application/msword": "doc",
+"application/msword": "docx",
 "application/msword": "dot",
 "application/commonground": "dp",
 "application/drafting": "drw",
@@ -577,7 +578,7 @@ const MIME_TYPE_MAP = {
 "application/vnd.wap.wmlc": "wmlc",
 "text/vnd.wap.wmlscript": "wmls",
 "application/vnd.wap.wmlscriptc": "wmls",
-"application/msword": "word",
+"application/msword": "doc",
 "application/wordperfect": "wp",
 "application/wordperfect": "wp5",
 "application/wordperfect6.0": "wp5",
@@ -601,6 +602,9 @@ const MIME_TYPE_MAP = {
 "video/x-amt-demorun": "xdr",
 "xgl/drawing": "xgz",
 "image/vnd.xiff": "xif",
+"application/excel": "xls",
+"application/msexcel": "xls",
+"application/vnd.openxmlformats-officedocument.spreadsheetml.sheet": "xls",
 "application/excel": "xl",
 "application/excel": "xla",
 "application/x-excel": "xla",
@@ -624,7 +628,6 @@ const MIME_TYPE_MAP = {
 "application/excel": "xls",
 "application/vnd.ms-excel": "xls",
 "application/x-excel": "xls",
-"application/x-msexcel": "xls",
 "application/excel": "xlt",
 "application/x-excel": "xlt",
 "application/excel": "xlv",

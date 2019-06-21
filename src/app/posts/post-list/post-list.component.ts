@@ -11,6 +11,7 @@ import { FileEditDialogComponent } from './file-edit.component';
 export interface Tile {
   fileId: string;
   fileName: string;
+  filePath: string;
   fileAuthor: string;
   dateUploaded: Date;
   fileTags: string;
@@ -24,6 +25,7 @@ export interface Tile {
 export interface DialogData {
   fileId: string;
   fileName: string;
+  filePath: string;
   fileAuthor: string;
   dateUploaded: Date;
   fileTags: string;
@@ -70,6 +72,7 @@ export class PostListComponent implements OnInit, OnDestroy {
           this.postTiles.push({
             fileId: this.posts[i].id,
             fileName: this.posts[i].fileName,
+            filePath: this.posts[i].filePath,
             fileAuthor: this.posts[i].fileAuthor,
             dateUploaded: this.posts[i].dateUploaded,
             fileTags: this.posts[i].fileTags,
@@ -96,6 +99,7 @@ export class PostListComponent implements OnInit, OnDestroy {
       data: {
         fileId: postTile.fileId,
         fileName: postTile.fileName,
+        filePath: postTile.filePath,
         fileAuthor: postTile.fileAuthor,
         dateUploaded: postTile.dateUploaded,
         fileTags: postTile.fileTags,

@@ -128,6 +128,7 @@ export const mimeType = (
           case 'dl':
           case 'dl':
           case 'doc':
+          case 'docx':
           case 'dot':
           case 'dp':
           case 'drw':

@@ -24,6 +24,7 @@ export class PostsService {
               return {
                 id: post._id,
                 fileName: post.fileName,
+                filePath: post.filePath,
                 fileAuthor: post.author,
                 dateUploaded: post.dateUploaded,
                 fileTags: post.fileTags,
