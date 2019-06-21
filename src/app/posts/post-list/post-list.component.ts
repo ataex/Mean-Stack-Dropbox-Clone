@@ -6,7 +6,7 @@ import { PageEvent, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/mat
 import { Post } from '../post.model';
 import { PostsService } from '../posts.service';
 import { AuthService } from 'src/app/auth/auth.service';
-// import { FileEditDialog } from './file-edit.component';
+import { FileEditDialogComponent } from './file-edit.component';
 
 export interface Tile {
   color: string;
@@ -47,10 +47,6 @@ export class PostListComponent implements OnInit, OnDestroy {
     {fileName: 'Three', cols: 1, rows: 1, color: 'lightpink', fileId: null},
     {fileName: 'Four', cols: 2, rows: 1, color: '#DDBDF1', fileId: null},
   ];
-
-  // tiles: Tile[] = [
-  //   {text: null, cols: 3, rows: 1, color: 'lightblue'}
-  // ];
 
   constructor(
     public postsService: PostsService,
@@ -123,19 +119,4 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsSub.unsubscribe();
     this.authStatusSub.unsubscribe();
   }
-}
-
-@Component({
-  templateUrl: 'file-edit.component.html',
-})
-export class FileEditDialogComponent {
-
-  constructor(
-    public dialogRef: MatDialogRef<FileEditDialogComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
-
-  onNoClick(): void {
-    this.dialogRef.close();
-  }
-
 }

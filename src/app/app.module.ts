@@ -21,7 +21,7 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidebarLeftComponent } from './navigation/sidebar-left/sidebar-left.component';
 import { SidebarRightComponent } from './navigation/sidebar-right/sidebar-right.component';
-import { PostListComponent, FileEditDialogComponent } from './posts/post-list/post-list.component';
+import { PostListComponent } from './posts/post-list/post-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -29,6 +29,7 @@ import { AuthInteceptor } from './auth/auth-interceptor';
 import { ErrorInteceptor } from './error-interceptor';
 import { ErrorComponent } from './error/error.component';
 import { UserSettingsComponent } from './settings/user-settings.component';
+import { FileEditDialogComponent } from './posts/post-list/file-edit.component';
 
 @NgModule({
   declarations: [
