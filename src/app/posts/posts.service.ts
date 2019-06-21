@@ -22,11 +22,13 @@ export class PostsService {
           return {
             posts: postData.posts.map(post => {
               return {
-                fileName: post.fileName,
-                // content: post.content,
                 id: post._id,
-                filePath: post.filePath,
-                creator: post.author
+                fileName: post.fileName,
+                fileAuthor: post.author,
+                dateUploaded: post.dateUploaded,
+                fileTags: post.fileTags,
+                dateLastModified: post.dateLastModified,
+                userLastModified: post.userLastModified,
               };
             }),
             maxPosts: postData.maxPosts

@@ -1,11 +1,31 @@
-<h1 mat-dialog-title>Hi {{data.name}}</h1>
 <div mat-dialog-content>
-  <p>What's your favorite animal?</p>
-  <mat-form-field>
-    <input matInput [(ngModel)]="data.animal">
-  </mat-form-field>
+  <mat-card>
+    <mat-spinner *ngIf="isLoading"></mat-spinner>
+    <form *ngIf="!isLoading">
+      <mat-form-field>
+        <input matInput type="text" placeholder="File Name:" value="{{data.fileName}}" readonly="true">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text" placeholder="File Author:" value="{{data.fileAuthor}}" readonly="true">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text" value="{{data.dateUploaded}}" readonly="true" placeholder="Date Uploaded:">
+      </mat-form-field><br>
+      <mat-form-field>
+        <textarea matInput rows="3" placeholder="File Tags:" value="{{data.fileTags}}" readonly="true"></textarea>
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text" readonly="true" value="{{data.dateLastModified}}" placeholder="Last Modified Date:">
+      </mat-form-field><br>
+      <mat-form-field>
+        <input matInput type="text" placeholder="User Last Modified:" value="{{data.userLastModified}}" readonly="true">
+      </mat-form-field>
+    </form>
+  </mat-card>
 </div>
 <div mat-dialog-actions>
-  <button mat-button (click)="onNoClick()">No Thanks</button>
-  <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button>
+  <button mat-button color="primary" (click)="onEditClick(this.fileId)" [routerLink]="['/edit', this.fileId]">Edit</button>
+  <button mat-button color="accent" [mat-dialog-close]="" (click)="onCheckoutClick(fileId)">Checkout</button>
+  <button mat-button color="warn" [mat-dialog-close]="this.fileDelete + this.fileId">DELETE</button>
+  <button mat-button color="warn" (click)="onCancelClick()">Cancel</button>
 </div>

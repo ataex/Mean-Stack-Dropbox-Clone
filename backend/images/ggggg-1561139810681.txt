@@ -1,0 +1,36 @@
+cssd test classes
+	
+	done:
+	
+		account
+		token
+		fare rules
+		server
+		Set of tokens
+		
+
+individual component
+
+	improve mobile ui including registering
+
+	make overall app/ui more user friendly - eg "hello matt"
+
+
+DONE:
+
+	hashing & salting of SmartCard PIN
+	hashing & salting of admin UI password
+	hashing & salting of mobile UI password
+	mobile UI account/profile page for details
+	
+	
+WALKTHROUGH MARKS
+
+uis - 16/20 - 80%
+testing - 11/15 - 73%
+eval - 20/25 - 80%
+critical reflection - 8/10 - 80%
+individual - 16/30 - 53%
+
+group - 55% 
+indiv overall - 71%

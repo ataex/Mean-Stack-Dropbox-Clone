@@ -9,16 +9,26 @@ import { AuthService } from 'src/app/auth/auth.service';
 import { FileEditDialogComponent } from './file-edit.component';
 
 export interface Tile {
-  color: string;
+  fileId: string;
+  fileName: string;
+  fileAuthor: string;
+  dateUploaded: Date;
+  fileTags: string;
+  dateLastModified: Date;
+  userLastModified: string;
   cols: number;
   rows: number;
-  fileName: string;
-  fileId: string;
+  color;
 }
 
 export interface DialogData {
-  animal: string;
-  name: string;
+  fileId: string;
+  fileName: string;
+  fileAuthor: string;
+  dateUploaded: Date;
+  fileTags: string;
+  dateLastModified: Date;
+  userLastModified: string;
 }
 
 @Component({
@@ -38,15 +48,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   private postsSub: Subscription;
   private authStatusSub: Subscription;
 
-  animal: string;
-  name: string;
-
-  postTiles: Tile[] = [
-    {fileName: 'One', cols: 3, rows: 1, color: 'lightblue', fileId: null},
-    {fileName: 'Two', cols: 1, rows: 2, color: 'lightgreen', fileId: null},
-    {fileName: 'Three', cols: 1, rows: 1, color: 'lightpink', fileId: null},
-    {fileName: 'Four', cols: 2, rows: 1, color: '#DDBDF1', fileId: null},
-  ];
+  postTiles: Tile[] = [];
 
   constructor(
     public postsService: PostsService,
@@ -64,9 +66,19 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.isLoading = false;
         this.totalPosts = postData.postCount;
         this.posts = postData.posts;
-        for (let i = 0; i < postData.postCount; i++) {
-          this.postTiles[i].fileName = this.posts[i].fileName;
-          this.postTiles[i].fileId = this.posts[i].id;
+        for (let i = 0; i < this.postsPerPage; i++) {
+          this.postTiles.push({
+            fileId: this.posts[i].id,
+            fileName: this.posts[i].fileName,
+            fileAuthor: this.posts[i].fileAuthor,
+            dateUploaded: this.posts[i].dateUploaded,
+            fileTags: this.posts[i].fileTags,
+            dateLastModified: this.posts[i].dateLastModified,
+            userLastModified: this.posts[i].userLastModified,
+            cols: 2,
+            rows: 2,
+            color: '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6)
+          });
         }
       });
     this.userIsAuthenticated = this.authService.getisAuth();
@@ -78,15 +90,25 @@ export class PostListComponent implements OnInit, OnDestroy {
     });
   }
 
-  openDialog(): void {
+  openDialog(postTile): void {
     const dialogRef = this.dialog.open(FileEditDialogComponent, {
-      width: '250px',
-      data: {name: this.name, animal: this.animal}
+      width: '50%',
+      data: {
+        fileId: postTile.fileId,
+        fileName: postTile.fileName,
+        fileAuthor: postTile.fileAuthor,
+        dateUploaded: postTile.dateUploaded,
+        fileTags: postTile.fileTags,
+        dateLastModified: postTile.dateLastModified,
+        userLastModified: postTile.userLastModified
+      }
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log('The dialog was closed');
-      this.animal = result;
+      if (result.substring( 0, 4 ) === 'true') {
+        result = result.slice( 4 );
+        this.onDelete(result);
+      }
     });
   }
 
@@ -95,6 +117,7 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.currentPage = pageData.pageIndex + 1;
     this.postsPerPage = pageData.pageSize;
     this.postsService.getPosts(this.postsPerPage, this.currentPage);
+    this.postTiles = [];
   }
 
   onDelete(postId: string) {
@@ -107,16 +130,18 @@ export class PostListComponent implements OnInit, OnDestroy {
     });
   }
 
-  tileMouseover(postTile) {
-    for (let i = 0; i < this.postTiles.length; i++ ) {
-      if (this.postTiles[i].fileId === postTile.fileId) {
-        this.postTiles[i].color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
-      }
-    }
-  }
+  // tileMouseover(postTile) {
+  //   for (let i = 0; i < this.postTiles.length; i++ ) {
+  //     if (this.postTiles[i].fileId === postTile.fileId) {
+  //       // this.postTiles[i].color = '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6);
+  //     }
+  //   }
+  // }
 
   ngOnDestroy() {
     this.postsSub.unsubscribe();
     this.authStatusSub.unsubscribe();
   }
+
+
 }

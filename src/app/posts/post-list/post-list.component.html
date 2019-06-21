@@ -20,7 +20,7 @@
     *ngFor="let postTile of postTiles"
     [colspan]="postTile.cols"
     [rowspan]="postTile.rows"
-    [style.background]="postTile.color" (click)="openDialog()">
+    [style.background]="postTile.color" (click)="openDialog(postTile)">
     {{postTile.fileName}}
     <!-- <a mat-button color="primary" [routerLink]="['/edit', postTile.fileId]">EDIT</a> -->
     <!-- HAVE A DIALOG POP UP WITH METADATA THEN DECIDE TO EDIT OR DOWNLOAD OR!!! CHECKOUT.
