@@ -21,7 +21,7 @@ import { PostCreateComponent } from './posts/post-create/post-create.component';
 import { HeaderComponent } from './navigation/header/header.component';
 import { SidebarLeftComponent } from './navigation/sidebar-left/sidebar-left.component';
 import { SidebarRightComponent } from './navigation/sidebar-right/sidebar-right.component';
-import { PostListComponent } from './posts/post-list/post-list.component';
+import { PostListComponent, FileEditDialogComponent } from './posts/post-list/post-list.component';
 import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
@@ -41,7 +41,8 @@ import { UserSettingsComponent } from './settings/user-settings.component';
     LoginComponent,
     SignupComponent,
     ErrorComponent,
-    UserSettingsComponent
+    UserSettingsComponent,
+    FileEditDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -66,6 +67,6 @@ import { UserSettingsComponent } from './settings/user-settings.component';
     {provide: HTTP_INTERCEPTORS, useClass: ErrorInteceptor, multi: true},
   ],
   bootstrap: [AppComponent],
-  entryComponents: [ErrorComponent]
+  entryComponents: [ErrorComponent, FileEditDialogComponent]
 })
 export class AppModule {}

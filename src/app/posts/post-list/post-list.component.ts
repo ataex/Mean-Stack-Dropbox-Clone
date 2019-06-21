@@ -1,10 +1,12 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
 import { Subscription } from 'rxjs';
-import { PageEvent } from '@angular/material';
+import { PageEvent, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
+
 
 import { Post } from '../post.model';
 import { PostsService } from '../posts.service';
 import { AuthService } from 'src/app/auth/auth.service';
+// import { FileEditDialog } from './file-edit.component';
 
 export interface Tile {
   color: string;
@@ -12,6 +14,11 @@ export interface Tile {
   rows: number;
   fileName: string;
   fileId: string;
+}
+
+export interface DialogData {
+  animal: string;
+  name: string;
 }
 
 @Component({
@@ -31,6 +38,9 @@ export class PostListComponent implements OnInit, OnDestroy {
   private postsSub: Subscription;
   private authStatusSub: Subscription;
 
+  animal: string;
+  name: string;
+
   postTiles: Tile[] = [
     {fileName: 'One', cols: 3, rows: 1, color: 'lightblue', fileId: null},
     {fileName: 'Two', cols: 1, rows: 2, color: 'lightgreen', fileId: null},
@@ -42,7 +52,11 @@ export class PostListComponent implements OnInit, OnDestroy {
   //   {text: null, cols: 3, rows: 1, color: 'lightblue'}
   // ];
 
-  constructor(public postsService: PostsService, private authService: AuthService) {}
+  constructor(
+    public postsService: PostsService,
+    private authService: AuthService,
+    public dialog: MatDialog
+    ) {}
 
   ngOnInit() {
     this.isLoading = true;
@@ -65,6 +79,18 @@ export class PostListComponent implements OnInit, OnDestroy {
     .subscribe(isAuthenticated => {
       this.userIsAuthenticated = isAuthenticated;
       this.userId = this.authService.getUserId();
+    });
+  }
+
+  openDialog(): void {
+    const dialogRef = this.dialog.open(FileEditDialogComponent, {
+      width: '250px',
+      data: {name: this.name, animal: this.animal}
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('The dialog was closed');
+      this.animal = result;
     });
   }
 
@@ -97,4 +123,19 @@ export class PostListComponent implements OnInit, OnDestroy {
     this.postsSub.unsubscribe();
     this.authStatusSub.unsubscribe();
   }
+}
+
+@Component({
+  templateUrl: 'file-edit.component.html',
+})
+export class FileEditDialogComponent {
+
+  constructor(
+    public dialogRef: MatDialogRef<FileEditDialogComponent>,
+    @Inject(MAT_DIALOG_DATA) public data: DialogData) {}
+
+  onNoClick(): void {
+    this.dialogRef.close();
+  }
+
 }
