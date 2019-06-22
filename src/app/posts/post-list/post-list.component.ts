@@ -17,6 +17,7 @@ export interface Tile {
   fileTags: string;
   dateLastModified: Date;
   userLastModified: string;
+  checkedOut: boolean;
   cols: number;
   rows: number;
   color;
@@ -31,6 +32,7 @@ export interface DialogData {
   fileTags: string;
   dateLastModified: Date;
   userLastModified: string;
+  checkedOut: boolean;
 }
 
 @Component({
@@ -47,6 +49,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   currentPage = 1;
   userIsAuthenticated = false;
   userId: string;
+  post: Post;
   private postsSub: Subscription;
   private authStatusSub: Subscription;
 
@@ -78,6 +81,7 @@ export class PostListComponent implements OnInit, OnDestroy {
             fileTags: this.posts[i].fileTags,
             dateLastModified: this.posts[i].dateLastModified,
             userLastModified: this.posts[i].userLastModified,
+            checkedOut: this.posts[i].checkedOut,
             cols: 2,
             rows: 2,
             color: '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6)
@@ -104,7 +108,8 @@ export class PostListComponent implements OnInit, OnDestroy {
         dateUploaded: postTile.dateUploaded,
         fileTags: postTile.fileTags,
         dateLastModified: postTile.dateLastModified,
-        userLastModified: postTile.userLastModified
+        userLastModified: postTile.userLastModified,
+        checkedOut: postTile.checkedOut
       }
     });
 
@@ -112,8 +117,39 @@ export class PostListComponent implements OnInit, OnDestroy {
       if (result.substring( 0, 4 ) === 'true') {
         result = result.slice( 4 );
         this.onDelete(result);
+      } else if (result.substring( 0, 8 ) === 'checkOut') {
+        result = result.slice( 8 );
+        this.checkOutFile(result);
       }
     });
+  }
+
+  checkOutFile(fileId) {
+    this.postsService.getPost(fileId).subscribe(postData => {
+      this.isLoading = false;
+      this.post = {
+        id: postData._id,
+        fileName: postData.fileName,
+        filePath: postData.filePath,
+        fileAuthor: postData.fileAuthor,
+        dateUploaded: postData.dateUploaded,
+        fileTags: postData.fileTags,
+        dateLastModified: postData.dateLastModified,
+        userLastModified: postData.userLastModified,
+        checkedOut: true
+      };
+    });
+    this.postsService.updatePost(
+      this.post.id,
+      this.post.fileName,
+      this.post.filePath,
+      this.post.fileAuthor,
+      this.post.dateUploaded,
+      this.post.fileTags,
+      this.post.dateLastModified,
+      this.post.userLastModified,
+      this.post.checkedOut
+      );
   }
 
   onChangedPage(pageData: PageEvent) {

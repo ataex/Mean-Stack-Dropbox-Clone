@@ -58,6 +58,9 @@ export class PostCreateComponent implements OnInit, OnDestroy {
       }),
       userLastModified: new FormControl(null, {
         validators: []
+      }),
+      checkedOut: new FormControl(null, {
+        validators: []
       })
     });
     this.form.patchValue({
@@ -79,7 +82,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             dateUploaded: postData.dateUploaded,
             fileTags: postData.fileTags,
             dateLastModified: postData.dateLastModified,
-            userLastModified: postData.userLastModified
+            userLastModified: postData.userLastModified,
+            checkedOut: postData.checkedOut
           };
           this.form.patchValue({
             fileName: this.post.fileName,
@@ -88,7 +92,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             dateUploaded: this.post.dateUploaded,
             fileTags: this.post.fileTags,
             dateLastModified: this.post.dateLastModified,
-            userLastModified: this.post.userLastModified
+            userLastModified: this.post.userLastModified,
+            checkedOut: this.post.checkedOut
           });
         });
       } else {
@@ -122,7 +127,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         this.form.value.dateUploaded,
         this.form.value.fileTags,
         this.form.value.dateLastModified,
-        this.form.value.userLastModified
+        this.form.value.userLastModified,
+        false
       );
     } else {
       this.postsService.updatePost(
@@ -133,7 +139,8 @@ export class PostCreateComponent implements OnInit, OnDestroy {
         this.form.value.dateUploaded,
         this.form.value.fileTags,
         this.form.value.dateLastModified,
-        this.form.value.userLastModified
+        this.form.value.userLastModified,
+        false
       );
     }
     this.form.reset();

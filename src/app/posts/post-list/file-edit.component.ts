@@ -13,6 +13,7 @@ export class FileEditDialogComponent implements OnInit {
 
   public fileId: string;
   public fileDelete = true;
+  public fileCheckedOut = 'checkOut';
   public downloadFilePath: string;
   public fileName: string;
 
@@ -23,8 +24,6 @@ export class FileEditDialogComponent implements OnInit {
     ngOnInit() {
       this.fileId = this.data.fileId;
       this.downloadFilePath = this.data.filePath;
-      console.log(this.downloadFilePath);
-      console.log(this.data);
     }
 
   onCancelClick() {
@@ -37,12 +36,6 @@ export class FileEditDialogComponent implements OnInit {
 
   onCheckoutClick(filePath) {
     window.location.href = filePath;
-
-    // var anchor = document.createElement('a');
-    // anchor.href = this.data.filePath;
-    // anchor.target = '_blank';
-    // anchor.download = this.data.fileName;
-    // anchor.click();
   }
 
 }

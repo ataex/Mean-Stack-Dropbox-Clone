@@ -691,7 +691,8 @@ router.post(
       dateUploaded: req.body.dateUploaded,
       fileTags: req.body.fileTags,
       dateLastModified: req.body.dateLastModified,
-      userLastModified: req.userData.userId
+      userLastModified: req.userData.userId,
+      checkedOut: req.body.checkedOut
     });
     post.save().then(createdPost => {
       res.status(201).json({
@@ -728,7 +729,8 @@ router.put(
       dateUploaded: req.body.dateUploaded,
       fileTags: req.body.fileTags,
       dateLastModified: req.body.dateLastModified,
-      userLastModified: req.userData.userId
+      userLastModified: req.userData.userId,
+      checkedOut: req.body.checkedOut
     });
     // Post.updateOne({ _id: req.params.id, creator: req.userData.userId }, post).then(result => {
     Post.updateOne({ _id: req.params.id }, post).then(result => {

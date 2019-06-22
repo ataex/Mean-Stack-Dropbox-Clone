@@ -7,4 +7,5 @@ export interface Post {
   fileTags: string;
   dateLastModified: Date;
   userLastModified: string;
+  checkedOut: boolean;
 }

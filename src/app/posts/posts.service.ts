@@ -30,6 +30,7 @@ export class PostsService {
                 fileTags: post.fileTags,
                 dateLastModified: post.dateLastModified,
                 userLastModified: post.userLastModified,
+                checkedOut: post.checkedOut
               };
             }),
             maxPosts: postData.maxPosts
@@ -50,7 +51,7 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return this.http.get<{ _id: string, fileName: string, filePath: string, fileAuthor: string, dateUploaded: Date, fileTags: string, dateLastModified: Date, userLastModified: string }>(
+    return this.http.get<{ _id: string, fileName: string, filePath: string, fileAuthor: string, dateUploaded: Date, fileTags: string, dateLastModified: Date, userLastModified: string, checkedOut: boolean }>(
       'http://localhost:3000/api/posts/' + id
     );
   }
@@ -62,7 +63,8 @@ export class PostsService {
     dateUploaded: Date,
     fileTags: string,
     dateLastModified: Date,
-    userLastModified: string) {
+    userLastModified: string,
+    checkedOut: boolean) {
     const postData = new FormData();
     postData.append('fileName', fileName);
     postData.append('file', file, fileName);
@@ -71,6 +73,7 @@ export class PostsService {
     postData.append('fileTags', fileTags);
     postData.append('dateLastModified', dateLastModified.toString());
     postData.append('userLastModified', userLastModified);
+    postData.append('checkedOut', checkedOut.toString());
     this.http
       .post<{ message: string; post: Post }>(
         'http://localhost:3000/api/posts',
@@ -89,7 +92,8 @@ export class PostsService {
     dateUploaded: Date,
     fileTags: string,
     dateLastModified: Date,
-    userLastModified: string) {
+    userLastModified: string,
+    checkedOut: boolean) {
     let postData: Post | FormData;
     if (typeof file === 'object') {
       postData = new FormData();
@@ -101,6 +105,7 @@ export class PostsService {
       postData.append('fileTags', fileTags);
       postData.append('dateLastModified', dateLastModified.toString());
       postData.append('userLastModified', userLastModified);
+      postData.append('checkedOut', checkedOut.toString());
     } else {
       postData = {
         id: id,
@@ -110,13 +115,14 @@ export class PostsService {
         dateUploaded: dateUploaded,
         fileTags: fileTags,
         dateLastModified: dateLastModified,
-        userLastModified: null
-        // creator: null
+        userLastModified: fileAuthor,
+        checkedOut: checkedOut
       };
     }
     this.http
       .put('http://localhost:3000/api/posts/' + id, postData)
       .subscribe(response => {
+        console.log(response);
         this.router.navigate(['/']);
       });
   }
