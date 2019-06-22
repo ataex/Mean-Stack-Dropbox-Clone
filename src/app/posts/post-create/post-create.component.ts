@@ -75,7 +75,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
             id: postData._id,
             fileName: postData.fileName,
             filePath: postData.filePath,
-            author: postData.author,
+            fileAuthor: postData.fileAuthor,
             dateUploaded: postData.dateUploaded,
             fileTags: postData.fileTags,
             dateLastModified: postData.dateLastModified,
@@ -84,7 +84,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
           this.form.patchValue({
             fileName: this.post.fileName,
             file: this.post.filePath,
-            fileAuthor: this.post.author,
+            fileAuthor: this.post.fileAuthor,
             dateUploaded: this.post.dateUploaded,
             fileTags: this.post.fileTags,
             dateLastModified: this.post.dateLastModified,
@@ -118,7 +118,7 @@ export class PostCreateComponent implements OnInit, OnDestroy {
       this.postsService.addPost(
         this.form.value.fileName,
         this.form.value.file,
-        this.form.value.author,
+        this.form.value.fileAuthor,
         this.form.value.dateUploaded,
         this.form.value.fileTags,
         this.form.value.dateLastModified,

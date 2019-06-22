@@ -2,7 +2,7 @@ export interface Post {
   id: string;
   fileName: string;
   filePath: string;
-  author: string;
+  fileAuthor: string;
   dateUploaded: Date;
   fileTags: string;
   dateLastModified: Date;

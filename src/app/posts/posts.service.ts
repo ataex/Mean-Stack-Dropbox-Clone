@@ -25,7 +25,7 @@ export class PostsService {
                 id: post._id,
                 fileName: post.fileName,
                 filePath: post.filePath,
-                fileAuthor: post.author,
+                fileAuthor: post.fileAuthor,
                 dateUploaded: post.dateUploaded,
                 fileTags: post.fileTags,
                 dateLastModified: post.dateLastModified,
@@ -50,7 +50,7 @@ export class PostsService {
   }
 
   getPost(id: string) {
-    return this.http.get<{ _id: string, fileName: string, filePath: string, author: string, dateUploaded: Date, fileTags: string, dateLastModified: Date, userLastModified: string }>(
+    return this.http.get<{ _id: string, fileName: string, filePath: string, fileAuthor: string, dateUploaded: Date, fileTags: string, dateLastModified: Date, userLastModified: string }>(
       'http://localhost:3000/api/posts/' + id
     );
   }
@@ -58,7 +58,7 @@ export class PostsService {
   addPost(
     fileName: string,
     file: File,
-    author: string,
+    fileAuthor: string,
     dateUploaded: Date,
     fileTags: string,
     dateLastModified: Date,
@@ -66,7 +66,7 @@ export class PostsService {
     const postData = new FormData();
     postData.append('fileName', fileName);
     postData.append('file', file, fileName);
-    postData.append('author', author);
+    postData.append('fileAuthor', fileAuthor);
     postData.append('dateUploaded', dateUploaded.toString());
     postData.append('fileTags', fileTags);
     postData.append('dateLastModified', dateLastModified.toString());
@@ -85,7 +85,7 @@ export class PostsService {
     id: string,
     fileName: string,
     file: File | string,
-    author: string,
+    fileAuthor: string,
     dateUploaded: Date,
     fileTags: string,
     dateLastModified: Date,
@@ -96,7 +96,7 @@ export class PostsService {
       postData.append('id', id);
       postData.append('fileName', fileName);
       postData.append('file', file, fileName);
-      postData.append('author', author);
+      postData.append('fileAuthor', fileAuthor);
       postData.append('dateUploaded', dateUploaded.toString());
       postData.append('fileTags', fileTags);
       postData.append('dateLastModified', dateLastModified.toString());
@@ -106,7 +106,7 @@ export class PostsService {
         id: id,
         fileName: fileName,
         filePath: file,
-        author: author,
+        fileAuthor: fileAuthor,
         dateUploaded: dateUploaded,
         fileTags: fileTags,
         dateLastModified: dateLastModified,
