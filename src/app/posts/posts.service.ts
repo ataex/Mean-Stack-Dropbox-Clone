@@ -115,14 +115,13 @@ export class PostsService {
         dateUploaded: dateUploaded,
         fileTags: fileTags,
         dateLastModified: dateLastModified,
-        userLastModified: fileAuthor,
+        userLastModified: userLastModified,
         checkedOut: checkedOut
       };
     }
     this.http
       .put('http://localhost:3000/api/posts/' + id, postData)
       .subscribe(response => {
-        console.log(response);
         this.router.navigate(['/']);
       });
   }

@@ -126,7 +126,6 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   checkOutFile(fileId) {
     this.postsService.getPost(fileId).subscribe(postData => {
-      this.isLoading = false;
       this.post = {
         id: postData._id,
         fileName: postData.fileName,
@@ -138,18 +137,18 @@ export class PostListComponent implements OnInit, OnDestroy {
         userLastModified: postData.userLastModified,
         checkedOut: true
       };
+      this.postsService.updatePost(
+        this.post.id,
+        this.post.fileName,
+        this.post.filePath,
+        this.post.fileAuthor,
+        this.post.dateUploaded,
+        this.post.fileTags,
+        this.post.dateLastModified,
+        this.post.userLastModified,
+        this.post.checkedOut
+        );
     });
-    this.postsService.updatePost(
-      this.post.id,
-      this.post.fileName,
-      this.post.filePath,
-      this.post.fileAuthor,
-      this.post.dateUploaded,
-      this.post.fileTags,
-      this.post.dateLastModified,
-      this.post.userLastModified,
-      this.post.checkedOut
-      );
   }
 
   onChangedPage(pageData: PageEvent) {
