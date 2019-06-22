@@ -169,6 +169,7 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.post.checkedOut
         );
     });
+    location.reload();
   }
 
   checkOutFile(fileId) {
@@ -196,6 +197,7 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.post.checkedOut
         );
     });
+    location.reload();
   }
 
   onChangedPage(pageData: PageEvent) {
