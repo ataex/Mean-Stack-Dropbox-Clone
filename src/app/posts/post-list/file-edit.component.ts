@@ -14,6 +14,7 @@ export class FileEditDialogComponent implements OnInit {
   public fileId: string;
   public fileDelete = true;
   public fileCheckedOut = 'checkOut';
+  public fileCheckIn = 'checkIn';
   public downloadFilePath: string;
   public fileName: string;
 

@@ -72,20 +72,37 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.totalPosts = postData.postCount;
         this.posts = postData.posts;
         for (let i = 0; i < this.postsPerPage; i++) {
-          this.postTiles.push({
-            fileId: this.posts[i].id,
-            fileName: this.posts[i].fileName,
-            filePath: this.posts[i].filePath,
-            fileAuthor: this.posts[i].fileAuthor,
-            dateUploaded: this.posts[i].dateUploaded,
-            fileTags: this.posts[i].fileTags,
-            dateLastModified: this.posts[i].dateLastModified,
-            userLastModified: this.posts[i].userLastModified,
-            checkedOut: this.posts[i].checkedOut,
-            cols: 2,
-            rows: 2,
-            color: '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6)
-          });
+          if (this.posts[i].checkedOut === true) {
+            this.postTiles.push({
+              fileId: this.posts[i].id,
+              fileName: this.posts[i].fileName,
+              filePath: this.posts[i].filePath,
+              fileAuthor: this.posts[i].fileAuthor,
+              dateUploaded: this.posts[i].dateUploaded,
+              fileTags: this.posts[i].fileTags,
+              dateLastModified: this.posts[i].dateLastModified,
+              userLastModified: this.posts[i].userLastModified,
+              checkedOut: this.posts[i].checkedOut,
+              cols: 2,
+              rows: 2,
+              color: '#FF0000'
+            });
+          } else {
+              this.postTiles.push({
+              fileId: this.posts[i].id,
+              fileName: this.posts[i].fileName,
+              filePath: this.posts[i].filePath,
+              fileAuthor: this.posts[i].fileAuthor,
+              dateUploaded: this.posts[i].dateUploaded,
+              fileTags: this.posts[i].fileTags,
+              dateLastModified: this.posts[i].dateLastModified,
+              userLastModified: this.posts[i].userLastModified,
+              checkedOut: this.posts[i].checkedOut,
+              cols: 2,
+              rows: 2,
+              color: '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6)
+            });
+          }
         }
       });
     this.userIsAuthenticated = this.authService.getisAuth();
@@ -120,7 +137,37 @@ export class PostListComponent implements OnInit, OnDestroy {
       } else if (result.substring( 0, 8 ) === 'checkOut') {
         result = result.slice( 8 );
         this.checkOutFile(result);
+      } else if (result.substring( 0, 7) === 'checkIn') {
+        result = result.slice( 7 );
+        this.checkInFile(result);
       }
+    });
+  }
+
+  checkInFile(fileId) {
+    this.postsService.getPost(fileId).subscribe(postData => {
+      this.post = {
+        id: postData._id,
+        fileName: postData.fileName,
+        filePath: postData.filePath,
+        fileAuthor: postData.fileAuthor,
+        dateUploaded: postData.dateUploaded,
+        fileTags: postData.fileTags,
+        dateLastModified: postData.dateLastModified,
+        userLastModified: postData.userLastModified,
+        checkedOut: false
+      };
+      this.postsService.updatePost(
+        this.post.id,
+        this.post.fileName,
+        this.post.filePath,
+        this.post.fileAuthor,
+        this.post.dateUploaded,
+        this.post.fileTags,
+        this.post.dateLastModified,
+        this.post.userLastModified,
+        this.post.checkedOut
+        );
     });
   }
 

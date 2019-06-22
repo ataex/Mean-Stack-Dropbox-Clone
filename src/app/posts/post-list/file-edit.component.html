@@ -24,10 +24,12 @@
   </mat-card>
 </div>
 <div mat-dialog-actions>
-  <button mat-button color="primary" (click)="onEditClick(this.fileId)" [routerLink]="['/edit', data.fileId]">Edit</button>
-  <a mat-button color="accent" target="_blank" href="{{ data.filePath }}" download="">Download</a>
+  <button mat-button color="primary" *ngIf="!data.checkedOut" (click)="onEditClick(this.fileId)" [routerLink]="['/edit', data.fileId]">Edit</button>
+  <a mat-button color="accent" *ngIf="!data.checkedOut" target="_blank" href="{{ data.filePath }}" download="">Download</a>
   <a mat-button color="accent" target="_blank" href="{{ data.filePath }}" download="">
-    <button mat-button color="accent" [mat-dialog-close]="this.fileCheckedOut + this.fileId">Checkout</button></a>
-  <button mat-button color="warn" [mat-dialog-close]="this.fileDelete + data.fileId" >DELETE</button>
+    <button mat-button color="accent" *ngIf="!data.checkedOut" [mat-dialog-close]="this.fileCheckedOut + this.fileId">Checkout</button>
+    <button mat-button color="accent" *ngIf="data.checkedOut" [mat-dialog-close]="this.fileCheckIn + this.fileId">Check In</button>
+  </a>
+  <button mat-button color="warn" *ngIf="!data.checkedOut" [mat-dialog-close]="this.fileDelete + data.fileId" >DELETE</button>
   <button mat-button color="warn" (click)="onCancelClick()">Cancel</button>
 </div>
