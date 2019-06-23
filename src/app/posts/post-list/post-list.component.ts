@@ -83,9 +83,9 @@ export class PostListComponent implements OnInit, OnDestroy {
               dateLastModified: this.posts[i].dateLastModified,
               userLastModified: this.posts[i].userLastModified,
               checkedOut: this.posts[i].checkedOut,
-              cols: 2,
+              cols: 1,
               rows: 2,
-              color: '#FF0000'
+              color: '#FF0000'     //set color to red
             });
           } else {
               this.postTiles.push({
@@ -98,9 +98,9 @@ export class PostListComponent implements OnInit, OnDestroy {
               dateLastModified: this.posts[i].dateLastModified,
               userLastModified: this.posts[i].userLastModified,
               checkedOut: this.posts[i].checkedOut,
-              cols: 2,
+              cols: 1,
               rows: 2,
-              color: '#' + (0x1000000 + (Math.random()) * 0xffffff).toString(16).substr(1, 6)
+              color: '#00FF00'      //set color to green
             });
           }
         }
@@ -145,6 +145,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   }
 
   checkInFile(fileId) {
+    this.isLoading = true;
     this.postsService.getPost(fileId).subscribe(postData => {
       this.post = {
         id: postData._id,
@@ -168,11 +169,13 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.post.userLastModified,
         this.post.checkedOut
         );
+      this.isLoading = false;
+      location.reload();
     });
-    location.reload();
   }
 
   checkOutFile(fileId) {
+    this.isLoading = true;
     this.postsService.getPost(fileId).subscribe(postData => {
       this.post = {
         id: postData._id,
@@ -196,8 +199,9 @@ export class PostListComponent implements OnInit, OnDestroy {
         this.post.userLastModified,
         this.post.checkedOut
         );
+      this.isLoading = false;
+      location.reload();
     });
-    location.reload();
   }
 
   onChangedPage(pageData: PageEvent) {

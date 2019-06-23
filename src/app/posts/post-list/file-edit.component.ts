@@ -35,8 +35,4 @@ export class FileEditDialogComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  onCheckoutClick(filePath) {
-    window.location.href = filePath;
-  }
-
 }
