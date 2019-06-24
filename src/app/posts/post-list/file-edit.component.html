@@ -30,7 +30,7 @@
   <a mat-button color="accent" *ngIf="!data.checkedOut" target="_blank" href="{{ data.filePath }}" download="">
     <button mat-button color="accent" [mat-dialog-close]="this.fileCheckedOut + this.fileId">Checkout</button>
   </a>
-  <button mat-button color="accent" *ngIf="data.checkedOut" [mat-dialog-close]="this.fileCheckIn + this.fileId">Check In</button>
-  <button mat-button color="warn" *ngIf="!data.checkedOut" [mat-dialog-close]="this.fileDelete + data.fileId" >DELETE</button>
+  <button mat-button color="accent" *ngIf="(userIsAuthenticated) && (userId === data.userLastModified) && (data.checkedOut)" [mat-dialog-close]="this.fileCheckIn + this.fileId">Check In</button>
+  <button mat-button color="warn" *ngIf="!data.checkedOut" [mat-dialog-close]="fileDelete + data.fileId" >DELETE</button>
   <button mat-button color="warn" (click)="onCancelClick()">Cancel</button>
 </div>
