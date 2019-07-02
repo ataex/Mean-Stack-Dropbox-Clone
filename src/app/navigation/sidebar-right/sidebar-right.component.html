@@ -4,9 +4,9 @@
     <div class="navItems">
       <ul>
         <li>
-          <form class="searchForm">
+          <form [formGroup]="searchForm" (submit)="onSearch()">
             <mat-form-field>
-              <input matInput type="search" placeholder="Search...">
+              <input matInput type="text" formControlName="searchString" placeholder="Search...">
             </mat-form-field>
             <button mat-raised-button id="searchButton" color="primary" type="submit">Search</button>
           </form>

@@ -50,6 +50,7 @@ export class PostListComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   userId: string;
   post: Post;
+  tempSearchString: string;
   private postsSub: Subscription;
   private authStatusSub: Subscription;
 
@@ -63,6 +64,7 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isLoading = true;
+    this.tempSearchString = '';
     this.postsService.getPosts(this.postsPerPage, 1);
     this.userId = this.authService.getUserId();
     this.postsSub = this.postsService
@@ -113,6 +115,10 @@ export class PostListComponent implements OnInit, OnDestroy {
       this.userId = this.authService.getUserId();
     });
   }
+
+  onSearch(searchString) {
+    this.tempSearchString = searchString;
+ }
 
   openDialog(postTile): void {
     const dialogRef = this.dialog.open(FileEditDialogComponent, {
