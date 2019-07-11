@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, Inject } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Subscription } from 'rxjs';
 import { PageEvent, MatDialog, MatDialogRef, MAT_DIALOG_DATA} from '@angular/material';
 
@@ -50,9 +51,10 @@ export class PostListComponent implements OnInit, OnDestroy {
   userIsAuthenticated = false;
   userId: string;
   post: Post;
-  tempSearchString: string;
+  searchString: string;
   private postsSub: Subscription;
   private authStatusSub: Subscription;
+  searchForm: FormGroup;
 
   postTiles: Tile[] = [];
 
@@ -64,7 +66,6 @@ export class PostListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.isLoading = true;
-    this.tempSearchString = '';
     this.postsService.getPosts(this.postsPerPage, 1);
     this.userId = this.authService.getUserId();
     this.postsSub = this.postsService
@@ -114,11 +115,18 @@ export class PostListComponent implements OnInit, OnDestroy {
       this.userIsAuthenticated = isAuthenticated;
       this.userId = this.authService.getUserId();
     });
+    this.searchForm = new FormGroup({
+      searchString: new FormControl(null, {
+        validators: [Validators.minLength(3)]
+      })
+    });
   }
 
-  onSearch(searchString) {
-    this.tempSearchString = searchString;
- }
+  onSearch() {
+    
+    this.searchString = this.searchForm.value.searchString;
+    this.searchForm.reset();
+  }
 
   openDialog(postTile): void {
     const dialogRef = this.dialog.open(FileEditDialogComponent, {

@@ -131,6 +131,44 @@ export class PostsService {
       .delete('http://localhost:3000/api/posts/' + postId);
   }
 
+  searchPosts(searchString) {
+    let url = '';
+    if (searchString === '') {
+        return this.getPosts(5, 1);
+    } else {
+        url = 'http://localhost:3000/api/posts/' + searchString;
+        return this.http
+        .get<{ message: string; posts: any, maxPosts: number }>(url)
+        .pipe(
+          map(postData => {
+            return {
+              posts: postData.posts.map(post => {
+                return {
+                  id: post._id,
+                  fileName: post.fileName,
+                  filePath: post.filePath,
+                  fileAuthor: post.fileAuthor,
+                  dateUploaded: post.dateUploaded,
+                  fileTags: post.fileTags,
+                  dateLastModified: post.dateLastModified,
+                  userLastModified: post.userLastModified,
+                  checkedOut: post.checkedOut
+                };
+              }),
+              maxPosts: postData.maxPosts
+            };
+          })
+        )
+        .subscribe(transformedPostData => {
+          this.posts = transformedPostData.posts;
+          this.postsUpdated.next({
+            posts: [...this.posts],
+            postCount: transformedPostData.maxPosts
+          });
+        });
+    }
+  }
+
   cancelCreate() {
     this.router.navigate(['/']);
   }

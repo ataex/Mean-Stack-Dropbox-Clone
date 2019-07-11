@@ -749,6 +749,23 @@ router.put(
   }
 );
 
+router.get('/:searchString', function (req, res, next) {
+  Post.find({$text: {$search: req.params.searchString}})
+      // .populate('user', 'firstName')
+      .exec(function (err, posts) {
+          if (err) {
+              return res.status(500).json({
+                  title: 'An error occurred',
+                  error: err
+              });
+          }
+          res.status(200).json({
+              post: 'Success',
+              obj: posts
+          });
+      });
+});
+
 router.get("", (req, res, next) => {
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;

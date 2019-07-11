@@ -13,13 +13,6 @@ mat-sidenav {
   right: 0;
 }
 
-mat-form-field,
-input,
-#searchButton {
-  text-align: center;
-  width: 100%;
-}
-
 a {
   text-decoration: none;
   color: white;
